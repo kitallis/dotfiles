@@ -1,0 +1,42 @@
+#!/bin/bash
+
+replace=""
+
+[ -e 'gitconfig' ] && rm gitconfig
+if [ -e 'gitconfig.user' ]; then
+    cat gitconfig.user >> gitconfig
+else
+    echo "Create a gitconfig.user with just your own user details."
+fi
+cat gitconfig.withoutuser >> gitconfig
+
+
+for f in *
+do
+    test "$f" = "install" && continue
+    test "$f" = "gitconfig.withoutuser" && continue
+    test "$f" = "gitconfig.user" && continue
+    dest="$HOME/.$f"
+    file="$PWD/$f"
+
+    if [ -e "$dest" ] || [ -h "$dest" ]; then
+        if [ "$replace" != "a" ]; then
+            echo "$dest already exists, replace? [y/n/a] "
+            read -r replace
+        fi
+
+        if [ "$replace" = "a" ] || [ "$replace" = "y" ]; then
+            echo "linking $file to $dest..."
+            rm -f "$dest"
+            ln -s "$file" "$dest"
+            test "$replace" != "a" && replace=""
+        else
+            echo "skipping $file as it already exists..."
+        fi
+    elif [ "$f" == "README" ]; then
+        echo "skipping README: $f."
+    else
+        echo "linking $file to $dest..."
+        ln -s "$file" "$dest"
+    fi
+done
