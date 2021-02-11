@@ -10,12 +10,13 @@ else
 fi
 cat gitconfig.withoutuser >> gitconfig
 
-
 for f in *
 do
     test "$f" = "install" && continue
+    test "$f" = "README.md" && continue
     test "$f" = "gitconfig.withoutuser" && continue
     test "$f" = "gitconfig.user" && continue
+
     dest="$HOME/.$f"
     file="$PWD/$f"
 
