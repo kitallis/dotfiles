@@ -1,2 +1,2 @@
 # Source .profile
-# [[ -e ~/.profile ]] && (sh -c 'source ~/.profile')
+[[ -e ~/.profile ]] && source $HOME/.profile
