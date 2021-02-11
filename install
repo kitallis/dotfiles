@@ -5,6 +5,7 @@ replace=""
 [ -e 'gitconfig' ] && rm gitconfig
 if [ -e 'gitconfig.user' ]; then
     cat gitconfig.user >> gitconfig
+    echo "" >> gitconfig # add newline
 else
     echo "Create a gitconfig.user with just your own user details."
 fi
