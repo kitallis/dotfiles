@@ -1,7 +1,7 @@
 # Pre-req
 
 - Install zsh + [prezto](https://github.com/sorin-ionescu/prezto).
-- Add a file called `gitconfig.user` to this repo and stick your default git user/email:
+- Add a file called `files/gitconfig.user` to this repo and stick your default git user/email:
 
 ```
 [user]

@@ -2,23 +2,23 @@
 
 replace=""
 
-[ -e 'gitconfig' ] && rm gitconfig
-if [ -e 'gitconfig.user' ]; then
-    cat gitconfig.user >> gitconfig
-    echo "" >> gitconfig # add newline
+[ -e 'files/gitconfig' ] && rm files/gitconfig
+if [ -e 'files/gitconfig.user' ]; then
+    cat files/gitconfig.user >> files/gitconfig
+    echo "" >> files/gitconfig # add newline
 else
     echo "Create a gitconfig.user with just your own user details."
 fi
-cat gitconfig.withoutuser >> gitconfig
+cat files/gitconfig.withoutuser >> files/gitconfig
 
-for f in *
+for f in files/*
 do
     test "$f" = "install" && continue
     test "$f" = "README.md" && continue
-    test "$f" = "gitconfig.withoutuser" && continue
-    test "$f" = "gitconfig.user" && continue
+    test "$f" = "files/gitconfig.withoutuser" && continue
+    test "$f" = "files/gitconfig.user" && continue
 
-    dest="$HOME/.$f"
+    dest="$HOME/.${f##*/}"
     file="$PWD/$f"
 
     if [ -e "$dest" ] || [ -h "$dest" ]; then
