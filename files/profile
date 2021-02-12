@@ -37,23 +37,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH=$HOME/code/android-sdk-macosx/tools:$PATH
 export PATH=$HOME/code/android-sdk-macosx/platform-tools:$PATH
 
-# node
-export PATH="$HOME/.node/bin:$PATH"
-
 # java
-export JAVA_HOME="$(/usr/libexec/java_home)"
-
-# go
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$GOPATH/bin:$PATH
-export PATH=$GOROOT/bin:$PATH
-
-# cargo
-export PATH="$HOME/.cargo/bin:$PATH"
-
-# ruby/rbenv (NOTE: ALWAYS KEEP THIS AT THE END)
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+. ~/.asdf/plugins/java/set-java-home.zsh
 
 export PATH
 export EDITOR=vim

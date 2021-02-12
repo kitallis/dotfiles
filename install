@@ -2,6 +2,7 @@
 
 replace=""
 
+# git
 [ -e 'files/gitconfig' ] && rm files/gitconfig
 if [ -e 'files/gitconfig.user' ]; then
     cat files/gitconfig.user >> files/gitconfig
@@ -11,12 +12,16 @@ else
 fi
 cat files/gitconfig.withoutuser >> files/gitconfig
 
+# dotfiles
 for f in files/*
 do
+    # skip
     test "$f" = "install" && continue
     test "$f" = "README.md" && continue
     test "$f" = "files/gitconfig.withoutuser" && continue
     test "$f" = "files/gitconfig.user" && continue
+    test "$f" = "files/Brewfile" && continue
+    test "$f" = "files/Brewfile.lock.json" && continue
 
     dest="$HOME/.${f##*/}"
     file="$PWD/$f"

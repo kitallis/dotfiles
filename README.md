@@ -1,6 +1,7 @@
 # Pre-req
 
 - Install zsh + [prezto](https://github.com/sorin-ionescu/prezto).
+- Install [asdf-vm](https://asdf-vm.com)
 - Add a file called `files/gitconfig.user` to this repo and stick your default git user/email:
 
 ```
