@@ -20,5 +20,5 @@ To fetch all homebrew packages for a vanilla setup:
 
 ```shell
 cd files
-brew bundle dump --file Brewfile
+brew bundle --file Brewfile
 ```
