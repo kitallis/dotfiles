@@ -13,3 +13,12 @@
 # Install
 
 Run `./install` to symlink the dotfiles to your `$HOME`.
+
+# Homebrew
+
+To fetch all homebrew packages for a vanilla setup:
+
+```shell
+cd files
+brew bundle dump --file Brewfile
+```
