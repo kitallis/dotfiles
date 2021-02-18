@@ -1,3 +1,8 @@
+lowercase(){
+    echo "$1" | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/"
+}
+
+OS=`lowercase \`uname\``
 export LC_CTYPE=en_US.UTF-8
 
 # aliases
@@ -11,12 +16,14 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias glg='git log --pretty=oneline'
 
-alias emacs='open -na /Applications/Emacs.app/Contents/MacOS/Emacs "$@"'
-alias st="open -a /Applications/Sublime\ Text.app"
+if [ "$OS" == "darwin" ]
+then
+    alias emacs='open -na /Applications/Emacs.app/Contents/MacOS/Emacs "$@"'
+    alias st="open -a /Applications/Sublime\ Text.app"
+fi
 
 # init fasd
 eval "$(fasd --init auto)"
-alias j="z"
 
 #
 ## PATHS [START]
