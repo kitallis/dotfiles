@@ -3,6 +3,13 @@ lowercase(){
 }
 
 OS=`lowercase \`uname\``
+
+export HISTSIZE=2000
+export HISTFILE="$HOME/.zsh_history"
+export SAVEHIST=$HISTSIZE
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+
 export LC_CTYPE=en_US.UTF-8
 
 # aliases
@@ -15,15 +22,19 @@ alias gca='git commit -v -a'
 alias gb='git branch'
 alias gba='git branch -a'
 alias glg='git log --pretty=oneline'
+alias gco='git checkout'
+alias gcm='git commit -m'
 
 if [ "$OS" == "darwin" ]
 then
     alias emacs='open -na /Applications/Emacs.app/Contents/MacOS/Emacs "$@"'
-    alias st="open -a /Applications/Sublime\ Text.app"
+    alias mate='/Applications/TextMate.app/Contents/SharedSupport/Support/bin/mate'
 fi
 
-# init fasd
-eval "$(fasd --init auto)"
+alias ls='ls -G'
+alias ll='ls -lG'
+
+alias tramline_psql="PGPASSWORD=IAP15HMv3KmE5Shu3GGKxEi6QqMP8Kd8 psql -h dpg-c7tv93gnlkif9mhcj2qg.frankfurt-postgres.render.com -U tramline tramline_site_production_nxl7"
 
 #
 ## PATHS [START]
@@ -36,20 +47,22 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/sbin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-
-# added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-# android
-export PATH=$HOME/code/android-sdk-macosx/tools:$PATH
-export PATH=$HOME/code/android-sdk-macosx/platform-tools:$PATH
-
-# java
-. ~/.asdf/plugins/java/set-java-home.zsh
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+export PATH="$HOME/SDKs/flutter/bin:$PATH"
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH
 export EDITOR=vim
 export VISUAL=vim
-#
-## PATHS [END]
+
 ## -----------
+## PATHS [END]
+#
+
+. "$HOME/.asdf/asdf.sh"
+
+. "$HOME/.cargo/env"
+

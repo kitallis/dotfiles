@@ -1,2 +1,9 @@
 # Source .profile
 [[ -e ~/.profile ]] && source $HOME/.profile
+eval "$(starship init bash)"
+. "$HOME/.cargo/env"
+. "$HOME/.asdf/plugins/java/set-java-home.bash"
+
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
