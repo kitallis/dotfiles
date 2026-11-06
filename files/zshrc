@@ -4,3 +4,26 @@ source ~/.zprezto/init.zsh
 . "$HOME/.asdf/plugins/java/set-java-home.zsh"
 
 eval "$(atuin init zsh)"
+
+# --- CA bundle override (added 2026-11-06) ---------------------------------
+# eMudhra intermediate CA key compromise (https://emudhra.we-have-a-problem.com/,
+# disclosed 2026-10-20): Apple's CLI tools (/usr/bin/curl, git, system python)
+# still trust the chain via /etc/ssl/cert.pem (emSign ECC Root CA - G3), and
+# macOS updates (27.2) reset manual edits to that file. Point CLI tools at
+# Homebrew's ca-certificates bundle instead, which dropped the root (2026-10-20);
+# this lives in $HOME so OS updates don't undo it. Keep it fresh with
+# `brew upgrade ca-certificates`.
+# Self-retiring: the override only applies while Apple's store still contains
+# the compromised root. Once a macOS update drops it, the override switches off
+# and every new shell prints a reminder to delete this block.
+# Note: local CAs trusted only in the Keychain (mkcert, OrbStack) aren't in
+# this bundle; append them to it or use --cacert if a local cert stops working.
+if grep -q "emSign ECC Root CA - G3" /etc/ssl/cert.pem 2>/dev/null; then
+  export SSL_CERT_FILE=/opt/homebrew/etc/openssl@4/cert.pem
+  export CURL_CA_BUNDLE="$SSL_CERT_FILE"
+  export GIT_SSL_CAINFO="$SSL_CERT_FILE"
+  export REQUESTS_CA_BUNDLE="$SSL_CERT_FILE"
+else
+  print -P "%F{yellow}macOS dropped the eMudhra root from /etc/ssl/cert.pem — delete the CA override block in ~/.zshrc%f"
+fi
+# ----------------------------------------------------------------------------
