@@ -1,18 +1,23 @@
 lowercase(){
     echo "$1" | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/"
 }
-
 OS=`lowercase \`uname\``
-
 export HISTSIZE=2000
 export HISTFILE="$HOME/.zsh_history"
 export SAVEHIST=$HISTSIZE
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
-
 export LC_CTYPE=en_US.UTF-8
 
-# aliases
+## Secrets [START]
+## ---------------
+# API keys and other secrets live in ~/.secrets (mode 600), outside this repo.
+# Variable names: secrets.example in the dotfiles repo
+[ -f "$HOME/.secrets" ] && . "$HOME/.secrets"
+## -------------
+
+## Aliases [START]
+## ---------------
 alias gst='git status'
 alias gl='git pull --rebase'
 alias gp='git push'
@@ -25,20 +30,18 @@ alias glg='git log --pretty=oneline'
 alias gco='git checkout'
 alias gcm='git commit -m'
 
-if [ "$OS" == "darwin" ]
+if [ "$OS" = "darwin" ]
 then
     alias emacs='open -na /Applications/Emacs.app/Contents/MacOS/Emacs "$@"'
-    alias mate='/Applications/TextMate.app/Contents/SharedSupport/Support/bin/mate'
 fi
 
 alias ls='ls -G'
 alias ll='ls -lG'
-
-
-#
-## PATHS [START]
 ## -------------
 
+
+## PATHS [START]
+## -------------
 # bins
 export PATH="/bin:$PATH"
 export PATH="/usr/bin:$PATH"
@@ -48,20 +51,30 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
-export PATH="$HOME/SDKs/flutter/bin:$PATH"
+export PATH="$HOME/SDKs/flutter_latest/bin:$PATH"
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export ASDF_DATA_DIR="$HOME/.asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 export PATH
 export EDITOR=vim
 export VISUAL=vim
 
+export TERM=xterm-256color
+
 ## -----------
-## PATHS [END]
-#
 
-. "$HOME/.asdf/asdf.sh"
 
+## Loaders [START]
+## ---------------
 . "$HOME/.cargo/env"
+. "$HOME/.atuin/bin/env"
+## -------------
 
+
+## Docker [START]
+## --------------
+export DOCKER_CLI_HINTS=false
+## ------------
