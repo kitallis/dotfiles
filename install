@@ -2,6 +2,9 @@
 
 replace=""
 
+# scan commits for secrets with the repo's versioned hooks (gitleaks pre-commit)
+git config core.hooksPath .githooks
+
 # git
 [ -e 'files/gitconfig' ] && rm files/gitconfig
 if [ -e 'files/gitconfig.user' ]; then
