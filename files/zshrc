@@ -3,7 +3,7 @@ eval "$(starship init zsh)"
 source ~/.zprezto/init.zsh
 . "$HOME/.asdf/plugins/java/set-java-home.zsh"
 
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
 
 # --- CA bundle override (added 2026-11-06) ---------------------------------
 # eMudhra intermediate CA key compromise (https://emudhra.we-have-a-problem.com/,
