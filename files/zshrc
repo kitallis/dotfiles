@@ -5,6 +5,25 @@ source ~/.zprezto/init.zsh
 
 eval "$(atuin init zsh --disable-up-arrow)"
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kitallis/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kitallis/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kitallis/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kitallis/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/kitallis/.dart-cli-completion/zsh-config.zsh ]] && . /Users/kitallis/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
+export PATH="/Users/kitallis/.shorebird/bin:$PATH"
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"
+
+. "$HOME/.atuin/bin/env"
+
 # --- CA bundle override (added 2026-11-06) ---------------------------------
 # eMudhra intermediate CA key compromise (https://emudhra.we-have-a-problem.com/,
 # disclosed 2026-10-20): Apple's CLI tools (/usr/bin/curl, git, system python)
