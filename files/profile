@@ -34,7 +34,6 @@ fi
 alias ls='ls -G'
 alias ll='ls -lG'
 
-alias tramline_psql="PGPASSWORD=IAP15HMv3KmE5Shu3GGKxEi6QqMP8Kd8 psql -h dpg-c7tv93gnlkif9mhcj2qg.frankfurt-postgres.render.com -U tramline tramline_site_production_nxl7"
 
 #
 ## PATHS [START]
